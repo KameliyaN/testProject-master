@@ -1,0 +1,36 @@
+{% extends 'common_app/base.html' %}
+
+
+{% block body_block %}
+    {% if articles %}
+        <blockquote class="blockquote text-center">
+
+            {% with articles|first as article %}<h3 style="color: indianred"><em><u>
+                    {{ article.user.username }}`s articles:</u></em></h3>{% endwith %}
+            <br>
+            <h4 class="mb-0" style="color: #888888"><em>Articles count: {{ articles.count }}</em></h4>
+
+        </blockquote>
+        {% for article in articles reversed %}
+            <br>
+            <div id="dashes-div">
+
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0">{{ article.title }}</p>
+                    <footer class="blockquote-footer"><em>Author:{{ article.user.username }},</em>
+                        <cite title="date">{{ article.date }}</cite></footer>
+                </blockquote>
+                <p align="center">
+                    <a href="{% url 'view article' article.pk %}">View more</a>
+                </p>
+            </div>
+            <hr>
+        {% endfor %}
+
+    {% else %}
+
+        <h3 class="mb-0"><em>There are no articles at the moment!</em></h3>
+        <br>
+        <a class="btn btn-success" href="javascript:history.back()">Back</a>
+    {% endif %}
+{% endblock %}

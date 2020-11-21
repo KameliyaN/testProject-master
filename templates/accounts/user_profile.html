@@ -1,0 +1,36 @@
+{% extends 'common_app/base.html' %}
+{% load static %}
+{% block body_block %}
+    <link rel="stylesheet" href="{% static 'accounts/css/profile_pic.css' %}"/>
+
+
+    <div class="main-container">
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class="card card-body" id="user-info-box">
+                    {% if  profile.picture %}
+                        <img id="user_pic" src="{{ profile.picture.url }}" alt="">
+                    {% else %}
+                        <img id="user_pic" src="{% static 'accounts/images/default_user.png' %}" alt="">
+                    {% endif %}
+
+                    <br>
+                    <p><em>Username</em>: <br><strong>{{ profile }}</strong></p>
+                    <hr>
+                    <p><em>Full name</em>: <br><strong>{{ profile.first_name }} {{ profile.last_name }}</strong></p>
+                    <hr>
+                    <p><em>Email</em>: <strong>{{ profile.email }}</strong></p>
+
+
+                    <a class="btn btn-secondary" href="{% url 'edit-profile' %}">Edit Profile</a>
+                    <br>
+                    <a class="btn btn-danger" href="{% url 'delete-profile' %}">Delete Profile</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

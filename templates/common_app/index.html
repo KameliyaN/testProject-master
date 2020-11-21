@@ -1,0 +1,71 @@
+{% extends 'common_app/base.html' %}
+{% load static %}
+
+{% block body_block %}
+    <link rel="stylesheet" href="{% static 'accounts/css/profile_pic.css' %}"/>
+    {#        <div class="container-fluid">#}
+    {#            <div class="row" >#}
+    {#                <div class="col-8" >#}
+
+    <blockquote class="blockquote text-center">
+        <h3 class="mb-0"><em>Forex world latest articles</em></h3>
+
+    </blockquote>
+
+
+    {% if articles %}
+
+        {% for article in articles reversed %}
+            <br>
+            <div id="dashes-div">
+
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0">{{ article.title }}</p>
+                    <footer class="blockquote-footer"><em>Author:{{ article.user.username }},</em>
+                        <cite title="date">{{ article.date }}</cite></footer>
+                </blockquote>
+                <p align="center">
+                    <a href="{% url 'view article' article.pk %}">View more</a>
+                </p>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <h3 class="mb-0"><em>There are no articles at the moment! Be the first to add one!</em></h3>
+
+    {% endif %}
+
+    </div>
+    <br>
+    <div class="col">
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Currency</th>
+                <th scope="col">Current price</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for curr in currencies %}
+                <tr>
+                    <td class="name">{{ curr.currency }}</td>
+                    <td>
+                        <span class="value">{{ curr.value }}</span>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+    {##}
+    {#    </div>#}
+
+{% endblock %}

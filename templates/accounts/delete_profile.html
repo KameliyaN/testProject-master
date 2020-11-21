@@ -1,0 +1,14 @@
+{% extends 'common_app/base.html' %}
+{% load crispy_forms_filters %}
+{% block body_block %}
+
+    <h2>Are you sure you want to delete your profile?</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a class="btn btn-success" href="javascript:history.back()">Back</a>
+    </form>
+
+{% endblock %}

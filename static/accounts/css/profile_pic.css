@@ -1,0 +1,12 @@
+#user_pic {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            border: 5px solid #888;
+            margin: 0 auto;
+            object-fit: cover;
+        }
+
+#user-info-box {
+    text-align: center;
+}

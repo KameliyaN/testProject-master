@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="https://pluspng.com/img-png/money-png-bag-dollar-money-1024.png">
+    <title>Forex world</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home' %}">Forex world</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'create article' %}">Create article</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}">Placeholder</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+             {% if user.is_authenticated %}
+                 Hello,{{ user.username }}!
+                 <ul class="navbar-nav mr-auto">
+                     <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                     </li>
+                     <li class="navbar-nav mr-auto">
+                          <a class="nav-link" href="{% url 'user-profile' %}">Profile</a>
+                     </li>
+                     {% if user.is_superuser %}
+                         <li class="navbar-nav mr-auto">
+                          <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                     </li>
+                     {% endif %}
+                      </ul>
+
+
+             {% else %}
+                 Start your forex journey here!
+                 <ul class="navbar-nav mr-auto">
+                     <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'login' %}">Log in</a>
+                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
+                    </li>
+                  </ul>
+             {% endif %}
+
+    </span>
+    </div>
+</nav>
+<div class="progress">
+    <div class="container color-white">
+        <div class="row" style="text-align: center">
+            <div style="margin-right:50px"><h6>LON <small>+1</small></h6></div>
+            <div style="margin-right:50px"><h6>SDNY<small>+10</small></h6></div>
+            <div style="margin-right:50px"><h6>NY <small>-4</small></h6></div>
+            <div style="margin-right:50px"><h6>TYO <small>+9</small></h6></div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            {% block body_block %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+#small_pic {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            border: 5px solid #888;
+            margin: 0 auto;
+            object-fit: cover;
+        }
+
